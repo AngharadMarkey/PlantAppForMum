@@ -41,11 +41,6 @@ A lightweight Progressive Web App (PWA) for identifying plants and generating pr
 
 ### 1. Clone the Repository
 
-```bash
-git clone <your-repo-url>
-cd <your-repo-folder>
-```
-
 ### 2. Create a Virtual Environment
 
 **macOS / Linux**
