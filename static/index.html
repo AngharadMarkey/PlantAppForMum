@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mum's Plant Identifier</title>
+
+  <!-- iOS PWA Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Plant care">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body style="font-family: system-ui, sans-serif; padding: 20px; text-align: center;">
+
+  <h1>🌸 Plant Care Finder</h1>
+  
+  <!-- Native Camera Hook -->
+  <input type="file" accept="image/*" capture="environment" id="camera-input" style="display: none;">
+  <button onclick="document.getElementById('camera-input').click()" 
+          style="padding: 16px 24px; font-size: 18px; border-radius: 12px; background: #2e7d32; color: white; border: none; cursor: pointer;">
+    📷 Take Plant Photo
+  </button>
+
+  <div id="results" style="margin-top: 24px; text-align: left;"></div>
+
+  <script>
+    const cameraInput = document.getElementById('camera-input');
+    const resultsDiv = document.getElementById('results');
+
+    cameraInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      resultsDiv.innerHTML = "<p>Analyzing your plant...</p>";
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        const res = await fetch('YOUR_BACKEND_URL/api/identify', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+
+        resultsDiv.innerHTML = `
+          <h2>${data.plant_name}</h2>
+          <p><strong>🌱 Planting Time:</strong> ${data.best_time_to_plant}</p>
+          <p><strong>💧 Water:</strong> ${data.watering_needs}</p>
+          <p><strong>☀️ Sunlight:</strong> ${data.sunlight}</p>
+          <p><strong>🌸 Flowering:</strong> ${data.flowering_duration}</p>
+          <p><strong>✂️ Pruning / Cut Back:</strong> ${data.pruning_advice}</p>
+        `;
+      } catch (err) {
+        resultsDiv.innerHTML = "<p>Failed to identify plant. Please try again!</p>";
+      }
+    });
+
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
+</body>
+</html>
