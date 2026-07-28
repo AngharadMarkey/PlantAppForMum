@@ -1,1 +1,9 @@
+# Ignore local environment file containing private API keys
 .env
+
+# Ignore virtual environment
+venv/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
