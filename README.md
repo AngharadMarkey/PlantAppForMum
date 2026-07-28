@@ -5,10 +5,10 @@ A lightweight Progressive Web App (PWA) for identifying plants and generating pr
 
 ## Features
 
-- 📷 **Camera Upload** – Capture or select plant photos on mobile or desktop.
-- 🌿 **Structured Advice** – Provides care difficulty, sunlight, pet safety, watering, planting, flowering, pruning, and pest information.
-- 🐾 **Visual Safety Badges** – Clearly highlights toxicity risks for pets.
-- 📱 **PWA Enabled** – Install directly to iOS or Android home screens.
+- **Camera Upload** – Capture or select plant photos on mobile or desktop.
+- **Structured Advice** – Provides care difficulty, sunlight, pet safety, watering, planting, flowering, pruning, and pest information.
+- **Visual Safety Badges** – Clearly highlights toxicity risks for pets.
+- **PWA Enabled** – Install directly to iOS or Android home screens.
 
 ---
 
